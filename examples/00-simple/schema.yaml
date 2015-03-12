@@ -1,0 +1,6 @@
+schema:
+  desc : Simple Example 
+  type : map
+  map:
+    my_string  : { type : str } 
+    my_int     : { type : int }

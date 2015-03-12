@@ -1,0 +1,77 @@
+#!/usr/bin/env python
+# -*- python -*-
+import re 
+import json 
+import argparse
+import logging
+
+from os import path
+from pprint import pformat
+
+import okra.core
+
+import yaml
+from jinja2 import Template
+
+Log = logging.getLogger('okra')
+
+def setup_logging():
+    # set up logging to file - see previous section for more details
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                        datefmt='%m-%d %H:%M')
+    # define a Handler which writes INFO messages or higher to the sys.stderr
+    console = logging.StreamHandler()
+    console.setLevel(logging.INFO)
+    # set a format which is simpler for console use
+    formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
+    # tell the handler to use this format
+    console.setFormatter(formatter)
+    # add the handler to the root logger
+    logging.getLogger('').addHandler(console)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='Generate configs')
+    
+    parser.add_argument('--schema')
+    parser.add_argument('--defaults')
+    parser.add_argument('--overrides')
+    parser.add_argument('--directory')
+    parser.add_argument('-d', '--debug', action='store_true')
+
+    return parser.parse_args()
+
+def parse_config(directory):
+
+    with open(path.join(directory, 'schema.yaml')) as schema_file:
+        schema = yaml.load(schema_file)
+        Log.debug(json.dumps(schema, indent=2))
+
+    print() 
+
+    with open(path.join(directory, 'defaults.yaml')) as defaults_file:
+        defaults = yaml.load(defaults_file)
+        Log.debug(json.dumps(defaults, indent=2))
+
+    try:
+        config = okra.core.Core(
+            source_data=defaults, schema_data=schema['schema']).validate()
+    except:
+        return schema, None
+
+    return schema, config
+
+
+def main():
+    args = parse_args()
+
+    if args.debug:
+        setup_logging()
+
+    schema, config = parse_config(args.directory)
+    print('Schema Validates: ' + str(bool(config)))
+          
+if __name__ == '__main__':
+    main()
+

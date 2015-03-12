@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-""" pykwalify """
+""" okra """
 
 # import sys
 import os

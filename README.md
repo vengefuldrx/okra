@@ -1,6 +1,6 @@
-# pyKwalify
+# okra - a fork of pyKwalify
 
-[![Build Status](https://travis-ci.org/Grokzen/pykwalify.svg?branch=master)](https://travis-ci.org/Grokzen/pykwalify) [![Coverage Status](https://coveralls.io/repos/Grokzen/pykwalify/badge.png?branch=master)](https://coveralls.io/r/Grokzen/pykwalify) [![Latest Version](https://pypip.in/version/pykwalify/badge.svg)](https://pypi.python.org/pypi/pykwalify/) [![Downloads](https://pypip.in/download/pykwalify/badge.svg)](https://pypi.python.org/pypi/pykwalify/) [![Supported Python versions](https://pypip.in/py_versions/pykwalify/badge.svg)](https://pypi.python.org/pypi/pykwalify/) [![Development Status](https://pypip.in/status/pykwalify/badge.svg)](https://pypi.python.org/pypi/pykwalify/) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Grokzen/pykwalify?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/Grokzen/okra.svg?branch=master)](https://travis-ci.org/Grokzen/okra) [![Coverage Status](https://coveralls.io/repos/Grokzen/okra/badge.png?branch=master)](https://coveralls.io/r/Grokzen/okra) [![Latest Version](https://pypip.in/version/okra/badge.svg)](https://pypi.python.org/pypi/okra/) [![Downloads](https://pypip.in/download/okra/badge.svg)](https://pypi.python.org/pypi/okra/) [![Supported Python versions](https://pypip.in/py_versions/okra/badge.svg)](https://pypi.python.org/pypi/okra/) [![Development Status](https://pypip.in/status/okra/badge.svg)](https://pypi.python.org/pypi/okra/) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Grokzen/okra?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 YAML/JSON validation library
@@ -17,7 +17,7 @@ The schema this library is base and extended from: http://www.kuwata-lab.com/kwa
 Latest stable release from pypi
 
 ```
-$ pip install pykwalify
+$ pip install okra
 ```
 
 or from source
@@ -37,9 +37,9 @@ The old releases can still be obtained from `github.com` and if you rellay need 
 
 The download links are
 
- - `15.01` - https://github.com/Grokzen/pykwalify/releases/download/15.01/pykwalify-15.01.tar.gz
- - `14.12` - https://github.com/Grokzen/pykwalify/releases/download/14.12/pykwalify-14.12.tar.gz
- - `14.08` - https://github.com/Grokzen/pykwalify/releases/download/14.08/pykwalify-14.08.tar.gz
+ - `15.01` - https://github.com/Grokzen/okra/releases/download/15.01/okra-15.01.tar.gz
+ - `14.12` - https://github.com/Grokzen/okra/releases/download/14.12/okra-14.12.tar.gz
+ - `14.08` - https://github.com/Grokzen/okra/releases/download/14.08/okra-14.08.tar.gz
 
 # Usage
 
@@ -61,7 +61,7 @@ sequence:
 Run validation from cli.
 
 ```bash
-pykwalify --data-file data.yaml --schema-file schema.yaml
+okra --data-file data.yaml --schema-file schema.yaml
 ```
 
 If validation passes then return code from the invocation will be 0. If errors was found then 1.
@@ -69,7 +69,7 @@ If validation passes then return code from the invocation will be 0. If errors w
 Run validation from code. Multiple schema files is possible to use when using partial schemas (See doc for details).
 
 ```python
-from pykwalify.core import Core
+from okra.core import Core
 c = Core(source_file="data.yaml", schema_files=["schema.yaml"])
 c.validate(raise_exception=True)
 ```

@@ -6,4 +6,4 @@
 
  - Test to implement lambda support in lib mode
 
- - Try to remove the requirement to have a list when defining a sequence: value. If pykwalify should support multiple types at the same time this might get removed because then it can just be implemented to support more then 1 type of sequence validation.
+ - Try to remove the requirement to have a list when defining a sequence: value. If okra should support multiple types at the same time this might get removed because then it can just be implemented to support more then 1 type of sequence validation.

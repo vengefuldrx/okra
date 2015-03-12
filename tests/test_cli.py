@@ -4,8 +4,8 @@
 import os
 import sys
 
-# pykwalify package imports
-from pykwalify import cli
+# okra package imports
+from okra import cli
 
 
 class TestCLI(object):
@@ -19,7 +19,7 @@ class TestCLI(object):
         schema_file = tmpdir.join("cli/1b.yaml")
 
         sys.argv = [
-            'scripts/pykwalify',
+            'scripts/okra',
             '-d', str(input),
             '-s', str(schema_file),
             '-v'
@@ -54,7 +54,7 @@ class TestCLI(object):
         schema_file = self.f("cli/1b.yaml")
 
         sys.argv = [
-            'scripts/pykwalify',
+            'scripts/okra',
             '-d', str(input),
             '-s', str(schema_file),
         ]

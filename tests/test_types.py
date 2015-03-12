@@ -5,7 +5,7 @@
 import unittest
 
 # pyKwalify imports
-from pykwalify import types
+from okra import types
 
 
 class TestTypes(unittest.TestCase):

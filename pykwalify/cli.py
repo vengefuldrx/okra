@@ -25,11 +25,11 @@ def parse_cli():
     #
 
     __docopt__ = """
-usage: pykwalify -d DATAFILE -s SCHEMAFILE ... [-q] [-v ...]
-       pykwalify -h | --help
-       pykwalify -V | --version
+usage: okra -d DATAFILE -s SCHEMAFILE ... [-q] [-v ...]
+       okra -h | --help
+       okra -V | --version
 
-pyKwalify - cli for pykwalify
+pyKwalify - cli for okra
 
 optional arguments:
   -d DATAFILE, --data-file DATAFILE        schema definition file
@@ -40,12 +40,12 @@ optional arguments:
   -h, --help                               show this help message and exit
 """
 
-    # Import pykwalify package
-    import pykwalify
+    # Import okra package
+    import okra
 
-    args = docopt(__docopt__, version=pykwalify.__version__)
+    args = docopt(__docopt__, version=okra.__version__)
 
-    pykwalify.init_logging(1 if args["--quiet"] else args["--verbose"])
+    okra.init_logging(1 if args["--quiet"] else args["--verbose"])
     Log = logging.getLogger(__name__)
 
     #
@@ -78,6 +78,6 @@ def cli_entrypoint():
     """
     # Check minimum version of Python
     if sys.version_info < (2, 7, 0):
-        sys.stderr.write("WARNING: pykwalify: It is recommended to run pykwalify on python version 2.7.x or later...\n\n")
+        sys.stderr.write("WARNING: okra: It is recommended to run okra on python version 2.7.x or later...\n\n")
 
     run(parse_cli())

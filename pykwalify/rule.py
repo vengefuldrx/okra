@@ -10,7 +10,7 @@ import re
 import logging
 
 # pyKwalify imports
-from pykwalify.types import (
+from okra.types import (
     DEFAULT_TYPE,
     is_bool,
     is_builtin_type,
@@ -20,7 +20,7 @@ from pykwalify.types import (
     sequence_aliases,
     type_class,
 )
-from pykwalify.errors import SchemaConflict, RuleError
+from okra.errors import SchemaConflict, RuleError
 
 Log = logging.getLogger(__name__)
 

@@ -11,10 +11,10 @@ import json
 import logging
 
 # pyKwalify imports
-import pykwalify
-from pykwalify.rule import Rule
-from pykwalify.types import is_scalar, tt
-from pykwalify.errors import CoreError, SchemaError
+import okra
+from okra.rule import Rule
+from okra.types import is_scalar, tt
+from okra.errors import CoreError, SchemaError
 
 # 3rd party imports
 import yaml
@@ -134,7 +134,7 @@ class Core(object):
                 Log.debug("Found partial schema; : {}".format(v))
                 r = Rule(schema=v)
                 Log.debug(" Partial schema : {}".format(r))
-                pykwalify.partial_schemas[k.split(";", 1)[1]] = r
+                okra.partial_schemas[k.split(";", 1)[1]] = r
             else:
                 # readd all items that is not schema; so they can be parsed
                 s[k] = v
@@ -182,9 +182,9 @@ class Core(object):
             return
 
         include_name = rule._include_name
-        partial_schema_rule = pykwalify.partial_schemas.get(include_name, None)
+        partial_schema_rule = okra.partial_schemas.get(include_name, None)
         if not partial_schema_rule:
-            errors.append("No partial schema found for name : {} : Existing partial schemas: {}".format(include_name, ", ".join(sorted(pykwalify.partial_schemas.keys()))))
+            errors.append("No partial schema found for name : {} : Existing partial schemas: {}".format(include_name, ", ".join(sorted(okra.partial_schemas.keys()))))
             return
 
         self._validate(value, partial_schema_rule, path, errors, done)

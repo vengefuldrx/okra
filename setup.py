@@ -9,7 +9,7 @@ with open('ReleaseNotes.rst') as f:
     history = f.read()
 
 setup(
-    name="pykwalify",
+    name="okra",
     version="1.0.1",
     description='Python lib/cli for JSON/YAML schema validation',
     long_description=readme + '\n\n' + history,
@@ -18,11 +18,11 @@ setup(
     maintainer='Johan Andersson',
     maintainer_email='Grokzen@gmail.com',
     license='MIT',
-    packages=['pykwalify'],
-    url='http://github.com/grokzen/pykwalify',
+    packages=['okra'],
+    url='http://github.com/grokzen/okra',
     entry_points={
         'console_scripts': [
-            'pykwalify = pykwalify.cli:cli_entrypoint',
+            'okra = okra.cli:cli_entrypoint',
         ],
     },
     install_requires=[

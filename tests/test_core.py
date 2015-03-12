@@ -11,15 +11,15 @@ import pytest
 from testfixtures import compare
 
 # pyKwalify imports
-import pykwalify
-from pykwalify.core import Core
-from pykwalify.errors import SchemaError, CoreError
+import okra
+from okra.core import Core
+from okra.errors import SchemaError, CoreError
 
 
 class TestCore(object):
 
     def setUp(self):
-        pykwalify.partial_schemas = {}
+        okra.partial_schemas = {}
 
     def f(self, *args):
         return os.path.join(os.path.dirname(os.path.realpath(__file__)), "files", *args)
@@ -175,7 +175,7 @@ class TestCore(object):
         assert c.validation_errors == ["Value: 1 is not of type 'str' : /0", "Value: 2 is not of type 'str' : /1", "Value: 3 is not of type 'str' : /2"]
 
         # TODO: Fix this issue...
-        # assert ('pykwalify.core', 'ERROR', 'Errors found but will not raise exception...') in l.actual()
+        # assert ('okra.core', 'ERROR', 'Errors found but will not raise exception...') in l.actual()
 
     def testCoreDataMode(self):
         Core(source_data=3.14159, schema_data={"type": "number"}).validate()

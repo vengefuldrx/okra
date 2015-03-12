@@ -8,15 +8,15 @@ import unittest
 import pytest
 
 # pyKwalify imports
-import pykwalify
-from pykwalify.rule import Rule
-from pykwalify.errors import RuleError, SchemaConflict
+import okra
+from okra.rule import Rule
+from okra.errors import RuleError, SchemaConflict
 
 
 class TestRule(unittest.TestCase):
 
     def setUp(self):
-        pykwalify.partial_schemas = {}
+        okra.partial_schemas = {}
 
     def test_schema_conflicts(self):
         # TODO: Each exception must be checked what key is raised withiin it...

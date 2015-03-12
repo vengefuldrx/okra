@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# pykwalify package imports
-from pykwalify import errors
+# okra package imports
+from okra import errors
 
 
 class TestCLI(object):

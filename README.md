@@ -1,46 +1,5 @@
 # okra - a fork of pyKwalify
 
-[![Build Status](https://travis-ci.org/Grokzen/okra.svg?branch=master)](https://travis-ci.org/Grokzen/okra) [![Coverage Status](https://coveralls.io/repos/Grokzen/okra/badge.png?branch=master)](https://coveralls.io/r/Grokzen/okra) [![Latest Version](https://pypip.in/version/okra/badge.svg)](https://pypi.python.org/pypi/okra/) [![Downloads](https://pypip.in/download/okra/badge.svg)](https://pypi.python.org/pypi/okra/) [![Supported Python versions](https://pypip.in/py_versions/okra/badge.svg)](https://pypi.python.org/pypi/okra/) [![Development Status](https://pypip.in/status/okra/badge.svg)](https://pypi.python.org/pypi/okra/) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Grokzen/okra?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-
-YAML/JSON validation library
-
-This framework is a port with alot added functionality of the java version of the framework kwalify that can be found at: http://www.kuwata-lab.com/kwalify/
-
-The source code can be found at: http://sourceforge.net/projects/kwalify/files/kwalify-java/0.5.1/
-
-The schema this library is base and extended from: http://www.kuwata-lab.com/kwalify/ruby/users-guide.01.html#schema
-
-
-# Installation
-
-Latest stable release from pypi
-
-```
-$ pip install okra
-```
-
-or from source
-
-```
-$ python setup.py install
-```
-
-
-## Important notes on version schema changes
-
-After the release of `15.01` the version schema was changed back from the <year>.<month> style version schema back to semantic version names. One big problem with this change is that `pypi` can't handle the change back to semantic names very well and because of this i had to remove the old releases from pypi and replace it with a single version `1.0.1`. 
-
-No matter what version you was using you should consider upgrade to `1.0.1`. The difference between the affected versions is very small and contains mostly bugfixes and added improvments. (See ReleaseNotes.rst for details)
-
-The old releases can still be obtained from `github.com` and if you rellay need the old version you can add the download url to your `requirements.txt` file.
-
-The download links are
-
- - `15.01` - https://github.com/Grokzen/okra/releases/download/15.01/okra-15.01.tar.gz
- - `14.12` - https://github.com/Grokzen/okra/releases/download/14.12/okra-14.12.tar.gz
- - `14.08` - https://github.com/Grokzen/okra/releases/download/14.08/okra-14.08.tar.gz
-
 # Usage
 
 Create a data file. Json and yaml formats are both supported.

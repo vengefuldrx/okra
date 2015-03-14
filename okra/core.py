@@ -10,26 +10,27 @@ import json
 # python std logging
 import logging
 
-# pyKwalify imports
+from os import path
+
+# oKra imports
 import okra
-from okra.rule import Rule
-from okra.types import is_scalar, tt
-from okra.errors import CoreError, SchemaError
+from .rule import Rule
+from .types import is_scalar, tt
+from .errors import CoreError, SchemaError
 
 # 3rd party imports
 import yaml
 
 Log = logging.getLogger(__name__)
 
-
 class Core(object):
-    """ Core class of pyKwalify """
+    """ Core class of oKra """
 
     def __init__(self, source_file=None, schema_files=[], source_data=None, schema_data=None):
-        Log.debug("source_file: {}".format(source_file))
-        Log.debug("schema_file: {}".format(schema_files))
-        Log.debug("source_data: {}".format(source_data))
-        Log.debug("schema_data: {}".format(schema_data))
+        Log.debug("source_file:   {}".format(source_file))
+        Log.debug("schema_file:   {}".format(schema_files))
+        Log.debug("source_data:   {}".format(source_data))
+        Log.debug("schema_data:   {}".format(schema_data))
 
         self.source = None
         self.schema = None

@@ -1,4 +1,4 @@
-help:
+\help:
 	@echo "Please use 'make <target>' where <target> is one of"
 	@echo "  clean           remove temporary files created by build tools"
 	@echo "  cleanegg        remove temporary files created by build tools"
@@ -27,12 +27,12 @@ cleanegg:
 	-rm -rf okra.egg-info/
 
 cleanpy:
-	-find . -type f -name "*~" -exec rm -f "{}" \;
-	-find . -type f -name "*.orig" -exec rm -f "{}" \;
-	-find . -type f -name "*.rej" -exec rm -f "{}" \;
-	-find . -type f -name "*.pyc" -exec rm -f "{}" \;
-	-find . -type f -name "*.parse-index" -exec rm -f "{}" \;
-	-find . -type d -name "__pycache__" -exec rm -rf "{}" \;
+	-find . -type f -name "*~" -exec rm -fv "{}" \;
+	-find . -type f -name "*.orig" -exec rm -fv "{}" \;
+	-find . -type f -name "*.rej" -exec rm -fv "{}" \;
+	-find . -type f -name "*.pyc" -exec rm -fv "{}" \;
+	-find . -type f -name "*.parse-index" -exec rm -fv "{}" \;
+	-find . -type d -name "__pycache__" -exec rm -fv "{}" \;
 
 cleanall: clean cleanegg cleanpy cleancov
 

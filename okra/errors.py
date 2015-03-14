@@ -3,7 +3,7 @@
 """ pyKwalify - errors.py """
 
 retcodes = {
-    # PyKwalifyExit
+    # OkraExit
     0: 'noerror',
 
     # UnknownError
@@ -30,7 +30,7 @@ retcodes = {
 retnames = dict((v, k) for (k, v) in retcodes.items())
 
 
-class PyKwalifyException(RuntimeError):
+class OkraException(RuntimeError):
     """
     """
 
@@ -39,7 +39,7 @@ class PyKwalifyException(RuntimeError):
 
         Arguments:
         - `msg`: a string
-        - `retcode`: an integer, defined in PyKwalify.errors.retcodes
+        - `retcode`: an integer, defined in Okra.errors.retcodes
         """
         self.msg = msg
         self.retcode = retcode
@@ -48,7 +48,7 @@ class PyKwalifyException(RuntimeError):
     def __str__(self):
         """
         """
-        # <PyKwalifyException msg='foo bar' retcode=1>
+        # <OkraException msg='foo bar' retcode=1>
         # kwargs = []
         # if self.msg:
         #        kwargs.append("msg='{}'".format(self.msg))
@@ -58,7 +58,7 @@ class PyKwalifyException(RuntimeError):
         #        kwargs.insert(0, '')
         # return "<{}{}>".format(self.__class__.__name__, ' '.join(kwargs))
 
-        # <PyKwalifyException: error code 1: foo bar>
+        # <OkraException: error code 1: foo bar>
         kwargs = []
         if self.retcode != retnames['noerror']:
             kwargs.append("error code {}".format(self.retcode))
@@ -116,7 +116,7 @@ class PyKwalifyException(RuntimeError):
     retname = property(**retname())
 
 
-class UnknownError(PyKwalifyException):
+class UnknownError(OkraException):
     """
     """
     def __init__(self, *args, **kwargs):
@@ -127,7 +127,7 @@ class UnknownError(PyKwalifyException):
                                            *args, **kwargs)
 
 
-class SchemaError(PyKwalifyException):
+class SchemaError(OkraException):
     """
     """
     def __init__(self, *args, **kwargs):
@@ -138,7 +138,7 @@ class SchemaError(PyKwalifyException):
                                           *args, **kwargs)
 
 
-class CoreError(PyKwalifyException):
+class CoreError(OkraException):
     """
     """
     def __init__(self, *args, **kwargs):
@@ -149,7 +149,7 @@ class CoreError(PyKwalifyException):
                                         *args, **kwargs)
 
 
-class RuleError(PyKwalifyException):
+class RuleError(OkraException):
     """
     """
     def __init__(self, *args, **kwargs):
@@ -160,7 +160,7 @@ class RuleError(PyKwalifyException):
                                         *args, **kwargs)
 
 
-class SchemaConflict(PyKwalifyException):
+class SchemaConflict(OkraException):
     """
     """
     def __init__(self, *args, **kwargs):

@@ -3,5 +3,9 @@ schema:
   type : map
   map:
     my_string  : { type : str } 
-    my_int     : { type : int }
+    my_int:
+      type : int
+      range: 
+        min: 0
+        max: 11
 

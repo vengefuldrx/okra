@@ -1,0 +1,6 @@
+my_string  : "hello world"
+my_int     : 10
+my_long    : 10L
+my_duration: 199ms
+
+

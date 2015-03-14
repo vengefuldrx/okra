@@ -11,9 +11,23 @@ from pprint import pformat
 import okra.core
 
 import yaml
-from jinja2 import Template
 
 Log = logging.getLogger('okra')
+
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
+
+class MagicEncoder(json.JSONEncoder):
+    def default(self, o):
+        try:
+            json.dumps(o)
+            return o
+        except: pass
+
+        return o.__dict__    
+
 
 def setup_logging():
     # set up logging to file - see previous section for more details
@@ -46,21 +60,49 @@ def parse_config(directory):
 
     with open(path.join(directory, 'schema.yaml')) as schema_file:
         schema = yaml.load(schema_file)
-        Log.debug(json.dumps(schema, indent=2))
+        Log.debug(json.dumps(schema, indent=2, cls=MagicEncoder))
 
-    print() 
 
     with open(path.join(directory, 'defaults.yaml')) as defaults_file:
         defaults = yaml.load(defaults_file)
-        Log.debug(json.dumps(defaults, indent=2))
+        Log.debug(yaml.dump(defaults))
 
-    try:
-        config = okra.core.Core(
-            source_data=defaults, schema_data=schema['schema']).validate()
-    except:
-        return schema, None
+    
+    config = okra.core.Core(source_data=defaults, schema_data=schema['schema']).validate()
 
     return schema, config
+
+
+def parse_overrides(directory, schema, defaults):
+    override_sections = {}
+
+    # Hacky bs in order to be able to import defaults into the overrides.yaml
+    # TODO: Custom yaml loader for importing the defaults
+    overrides_file = StringIO()
+    text = yaml.dump({'defaults': defaults}, default_flow_style=False)
+    text = re.sub(r'^defaults:', 'defaults: &defaults', text)
+    overrides_file.write(text)
+    overrides_file.write('\n')
+
+    with open(path.join(directory, 'overrides.yaml')) as ofile:
+        overrides_file.write(ofile.read())
+
+    overrides_file.seek(0)
+    overrides = yaml.load(overrides_file.read())
+
+    print(overrides_file.read())
+    print(json.dumps(overrides, indent=2, cls=MagicEncoder))
+
+    for section_name, data in overrides.items():
+        Log.debug('Validating overrides section: {}'.format(section_name))
+        print(json.dumps(data, indent=2, cls=MagicEncoder))
+        config = okra.core.Core(source_data=data, schema_data=schema['schema']).validate(raise_exception=False)
+
+        print('Section validates: {}'.format(bool(config)))
+        override_sections[section_name] = config
+
+    return override_sections
+    
 
 
 def main():
@@ -71,7 +113,9 @@ def main():
 
     schema, config = parse_config(args.directory)
     print('Schema Validates: ' + str(bool(config)))
-          
+    print(pformat(config))
+    print(pformat(parse_overrides(args.directory, schema, config)))
+
 if __name__ == '__main__':
     main()
 

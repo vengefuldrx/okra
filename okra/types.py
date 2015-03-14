@@ -1,30 +1,36 @@
 # -*- coding: utf-8 -*-
 
-""" pyKwalify - types.py """
+""" okra - types.py """
 
 # python std lib
 import datetime
+from collections import OrderedDict
+
+from .ext.types import _extension_types, extension_tt
 
 DEFAULT_TYPE = "str"
 
-_types = {
-    "str": str,
-    "int": int,
-    "float": float,
-    "number": None,
-    "bool": bool,
-    "map": dict,
-    "seq": list,
-    "timestamp": datetime.datetime,
-    "date": datetime.datetime,
-    "symbol": str,
-    "scalar": None,
-    "text": None,
-    "any": object,
-    "enum": str,
-    "none": None
-}
+# TODO: Make this an object that is instantiatble per instance of
+# core.Core in order to allow for dynamic loading for different types.
+_types = OrderedDict([
+    ("str", str),
+    ("int", int),
+    ("float", float),
+    ("number", None),
+    ("bool", bool),
+    ("map", dict),
+    ("seq", list),
+    ("timestamp", datetime.datetime),
+    ("date", datetime.datetime),
+    ("symbol", str),
+    ("scalar", None),
+    ("text", None),
+    ("any", object),
+    ("enum", str),
+    ("none", None)
+])
 
+_types.update(_extension_types)
 
 sequence_aliases = ["sequence", "seq"]
 mapping_aliases = ["map", "mapping"]
@@ -83,7 +89,13 @@ def is_text(obj):
 
 
 def is_any(obj):
-    return is_string(obj) or is_int(obj) or is_bool(obj) or is_float(obj) or is_number(obj) or is_text(obj) or is_collection(obj)
+    return is_string(obj) or \
+        is_int(obj) or \
+        is_bool(obj) or \
+        is_float(obj) or \
+        is_number(obj) or \
+        is_text(obj) or \
+        is_collection(obj)
 
 
 def is_enum(obj):
@@ -102,14 +114,16 @@ def is_mapping_alias(alias):
     return alias in mapping_aliases
 
 
-tt = {
-    "str": is_string,
-    "int": is_int,
-    "bool": is_bool,
-    "float": is_float,
-    "number": is_number,
-    "text": is_text,
-    "any": is_any,
-    "enum": is_enum,
-    "none": is_none
-}
+tt = OrderedDict([
+    ("str", is_string),
+    ("int", is_int),
+    ("bool", is_bool),
+    ("float", is_float),
+    ("number", is_number),
+    ("text", is_text),
+    ("any", is_any),
+    ("enum", is_enum),
+    ("none", is_none)
+])
+
+tt.update(extension_tt)

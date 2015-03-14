@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-""" pyKwalify - rule.py """
+""" oKra - rule.py """
 
 # python std lib
 import os
@@ -9,8 +9,8 @@ import re
 # python std logging
 import logging
 
-# pyKwalify imports
-from okra.types import (
+# oKra imports
+from .types import (
     DEFAULT_TYPE,
     is_bool,
     is_builtin_type,
@@ -20,7 +20,7 @@ from okra.types import (
     sequence_aliases,
     type_class,
 )
-from okra.errors import SchemaConflict, RuleError
+from .errors import SchemaConflict, RuleError
 
 Log = logging.getLogger(__name__)
 
